@@ -63,7 +63,7 @@ const CoachingBoard = () => {
 					{isClient ? (
 						<Tldraw
 							persistenceKey={`coaching-board-${backgroundType}`}
-							autofocus
+							autoFocus
 							components={components(backgroundType)} // Pass dynamic background based on dropdown
 							cameraOptions={CAMERA_OPTIONS} // Set camera options
 						/>
