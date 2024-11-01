@@ -12,7 +12,7 @@ const ShotChart = () => {
 	const [imageWidth, setImageWidth] = useState(0);
 	const [imageHeight, setImageHeight] = useState(0);
 	const [shots, setShots] = useState<Shot[]>([]); // State to store shot data
-	const imageRef = useRef(null); // To get the size of the image container
+	const imageRef = useRef<HTMLDivElement | null>(null); // Define the type as HTMLDivElement
 
 	const players = ["Player A", "Player B", "Player C", "All"];
 	const quarters = ["Q1", "Q2", "Q3", "Q4", "All"];
@@ -46,15 +46,15 @@ const ShotChart = () => {
 			setImageWidth(imgElement.clientWidth);
 			setImageHeight(imgElement.clientHeight);
 		}
-	}, [imageRef.current]);
+	}, []); // Empty dependency array to run only after initial render
 
 	// Original image dimensions (796x712)
 	const originalWidth = 796;
 	const originalHeight = 712;
 
 	// Scale the shot coordinates based on the image size
-	const scaleX = (x) => (x / originalWidth) * imageWidth;
-	const scaleY = (y) => (y / originalHeight) * imageHeight;
+	const scaleX = (x: number) => (x / originalWidth) * imageWidth;
+	const scaleY = (y: number) => (y / originalHeight) * imageHeight;
 
 	return (
 		<Card>
@@ -65,33 +65,26 @@ const ShotChart = () => {
 				<div className="flex space-x-4">
 					{/* Shot Chart Section */}
 					<div className="relative w-full max-w-lg">
-						{/* Limit the width */}
-						<div
-							className="relative w-full"
-							style={{ position: "relative", width: "100%" }}
-						>
+						<div ref={imageRef} className="relative w-full">
 							{/* Basketball half-court image as background */}
-							<div ref={imageRef}>
-								<Image
-									src="/images/halfcourt.png" // Replace with your actual file path
-									alt="Basketball Half Court"
-									layout="responsive"
-									width={originalWidth} // The original width of the image
-									height={originalHeight} // The original height of the image
-									priority={true}
-									className="rounded-lg"
-								/>
-							</div>
-
+							<Image
+								src="/images/halfcourt.png"
+								alt="Basketball Half Court"
+								layout="responsive"
+								width={originalWidth}
+								height={originalHeight}
+								priority={true}
+								className="rounded-lg"
+							/>
 							{/* Shots displayed on top of the court */}
 							{filteredShots.map((shot, index) => (
 								<div
 									key={index}
-									className={`absolute flex items-center justify-center`}
+									className="absolute flex items-center justify-center"
 									style={{
 										left: `${scaleX(shot.x)}px`,
 										top: `${scaleY(shot.y)}px`,
-										transform: "translate(-50%, -50%)", // Center the shot marker
+										transform: "translate(-50%, -50%)",
 										width: "24px",
 										height: "24px",
 									}}
@@ -99,7 +92,7 @@ const ShotChart = () => {
 									{shot.made ? (
 										<div className="bg-green-500 absolute w-4 h-4 rounded-full" />
 									) : (
-										<span className="text-red-500 text-xl font-bold">✖</span> // Display a cross for missed shots
+										<span className="text-red-500 text-xl font-bold">✖</span>
 									)}
 								</div>
 							))}
