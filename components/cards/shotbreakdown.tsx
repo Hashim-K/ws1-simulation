@@ -9,7 +9,7 @@ const ShotTypeBreakdown: React.FC<ShotTypeBreakdownProps> = ({
 	shotData = [],
 }) => {
 	// Initialize shot type counts
-	const shotTypes = {
+	const shotTypes: { [key: string]: number } = {
 		"3-pointer": 0,
 		"mid-range": 0,
 		"free throw": 0,
@@ -33,13 +33,15 @@ const ShotTypeBreakdown: React.FC<ShotTypeBreakdownProps> = ({
 			</CardHeader>
 			<CardContent>
 				<ul className="space-y-2">
-					{Object.keys(shotTypes).map((type, index) => {
+					{Object.keys(shotTypes).map((type) => {
 						// Avoid divide by zero, set percentage to 0 if totalShots is 0
 						const percentage =
-							totalShots > 0 ? (shotTypes[type] / totalShots) * 100 : 0;
+							totalShots > 0
+								? (shotTypes[type as keyof typeof shotTypes] / totalShots) * 100
+								: 0;
 
 						return (
-							<li key={index}>
+							<li key={type}>
 								<div className="flex justify-between">
 									<span>{type}</span>
 									<span>{percentage.toFixed(1)}%</span>
