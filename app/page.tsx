@@ -19,7 +19,6 @@ import TeamSwitcher from "@/components/team-switcher";
 import { UserNav } from "@/components/user-nav";
 import { PlusMinus } from "@/components/charts/points";
 import TeamOverview from "@/components/tabs/teamoverview";
-import Reports from "@/components/tabs/reports";
 import Replay from "@/components/tabs/replay";
 import Analytics from "@/components/tabs/analytics";
 import PlayerOverview from "@/components/tabs/playeroverview";
@@ -68,8 +67,8 @@ export default function DashboardPage() {
 						<TabsList>
 							<TabsTrigger value="teamoverview">Team Overview</TabsTrigger>
 							<TabsTrigger value="playeroverview">Player Overview</TabsTrigger>
-							<TabsTrigger value="analytics">Analytics</TabsTrigger>
-							<TabsTrigger value="reports">Reports</TabsTrigger>
+							{/* <TabsTrigger value="analytics">Analytics</TabsTrigger> */}
+							{/* <TabsTrigger value="reports">Reports</TabsTrigger> */}
 							<TabsTrigger value="replay">Replay</TabsTrigger>
 							<TabsTrigger value="board">Coaching Board</TabsTrigger>
 						</TabsList>
@@ -77,15 +76,15 @@ export default function DashboardPage() {
 						<TabsContent value="teamoverview">
 							<TeamOverview />
 						</TabsContent>
-						<TabsContent value="Playeroverview">
+						<TabsContent value="playeroverview">
 							<PlayerOverview />
 						</TabsContent>
-						<TabsContent value="analytics">
+						{/* <TabsContent value="analytics">
 							<Analytics />
-						</TabsContent>
-						<TabsContent value="reports">
+						</TabsContent> */}
+						{/* <TabsContent value="reports">
 							<Reports />
-						</TabsContent>
+						</TabsContent> */}
 						<TabsContent value="replay">
 							<Replay />
 						</TabsContent>

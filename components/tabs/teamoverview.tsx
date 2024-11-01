@@ -9,6 +9,9 @@ import FoulTracker from "../cards/foultracker";
 import KeyPlays from "../cards/keyplays";
 import PlayerStats from "../cards/playerstats";
 import VideoCard from "../cards/videocard";
+import { PointsScoredPerMinuteChart } from "../charts/barchart";
+import ChartCard from "../cards/chartcard";
+import { MomentumChart } from "../charts/momentumchart";
 
 const TeamOverview = () => {
 	return (
@@ -23,10 +26,10 @@ const TeamOverview = () => {
 					<VideoCard />
 				</div>
 			</div>
+			<PointsScoredPerMinuteChart />
 			<PlayerHighlights />
+			<MomentumChart />
 			<GameTimeline />
-			<MomentumGraph />
-			<ShotTypeBreakdown />
 			<FoulTracker />
 			<KeyPlays />
 		</div>
